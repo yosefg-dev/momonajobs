@@ -1,7 +1,7 @@
 import connection from '../connection';
 const {Model, DataTypes} = require('sequelize');
-const initEmployee = (sequelize, DataTypes) => {
-  class Employee extends Model {
+const initJobCegory = (sequelize, DataTypes) => {
+  class JobCategroy extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -9,21 +9,17 @@ const initEmployee = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Employee.hasMany(models.jobLocation)
-      Employee.hasMany(models.jobCategory)
+      JobCategroy.belongsTo(models.applicaitonDetail)
     }
   }
-  Employee.init({
+  JobCategroy.init({
     name: DataTypes.STRING,
-    contact: DataTypes.STRING,
-    email: DataTypes.STRING,
-    password: DataTypes.STRING,
-    userName: DataTypes.STRING
+    EmployeeID: DataTypes.STRING
   }, {
     sequelize,
-    modelName: 'Employee',
+    modelName: 'JobCategroy',
   });
-  return Employee;
+  return JobCategroy;
 };
 
-export default initEmployee(connection, DataTypes);
+export default initJobCegory(connection, DataTypes);

@@ -1,6 +1,7 @@
 import connection from '../connection';
 const {Model, DataTypes} = require('sequelize');
 const initCompany = (sequelize, DataTypes) => {
+
   class Company extends Model {
     /**
      * Helper method for defining associations.
@@ -8,23 +9,23 @@ const initCompany = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
       Company.hasMany(models.jobInformation)
     }
   }
   Company.init({
     name: DataTypes.STRING,
-    address: DataTypes.STRING,
+    address: DataTypes.TEXT,
     contact: DataTypes.STRING,
     email: DataTypes.STRING,
     website: DataTypes.STRING,
     password: DataTypes.STRING,
     userName: DataTypes.STRING,
-    accountStatus: DataTypes.STRING
+    accountStatus:DataTypes.STRING
   }, {
     sequelize,
-    modelName: 'Company',
+    modelName: 'Applicant',
   });
   return Company;
 };
-export default initCompany( connection, DataTypes);
+
+export default initCompany(connection, DataTypes)
